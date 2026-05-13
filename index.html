@@ -16,7 +16,6 @@
     min-height: 100vh;
   }
 
-  /* floating blobs */
   body::before {
     content: '';
     position: fixed;
@@ -37,7 +36,7 @@
   }
 
   .page-wrapper {
-    max-width: 900px;
+    max-width: 960px;
     margin: 0 auto;
     padding: 2rem 1.5rem 4rem;
     position: relative;
@@ -177,6 +176,7 @@
   .section-header.hd-red    { background: linear-gradient(90deg, #ffe4e6, #fff1f2); }
   .section-header.hd-amber  { background: linear-gradient(90deg, #fff7ed, #fef3c7); }
   .section-header.hd-blue   { background: linear-gradient(90deg, #eff6ff, #f0fdf4); }
+  .section-header.hd-purple { background: linear-gradient(90deg, #faf5ff, #ede9fe); }
 
   .section-dot {
     width: 10px; height: 10px;
@@ -184,9 +184,10 @@
     flex-shrink: 0;
   }
 
-  .dot-red   { background: #f87171; }
-  .dot-amber { background: #fb923c; }
-  .dot-blue  { background: #60a5fa; }
+  .dot-red    { background: #f87171; }
+  .dot-amber  { background: #fb923c; }
+  .dot-blue   { background: #60a5fa; }
+  .dot-purple { background: #a78bfa; }
 
   .section-title {
     font-weight: 700;
@@ -270,18 +271,20 @@
     white-space: nowrap;
   }
 
-  .badge-perm  { background: #ffe4e6; color: #9f1239; border: 1px solid #fda4af; }
-  .badge-30d   { background: #fff7ed; color: #9a3412; border: 1px solid #fdba74; }
-  .badge-7d    { background: #fefce8; color: #854d0e; border: 1px solid #fde047; }
-  .badge-3d    { background: #eff6ff; color: #1e40af; border: 1px solid #93c5fd; }
-  .badge-1d    { background: #f0fdf4; color: #166534; border: 1px solid #86efac; }
-  .badge-warn  { background: #faf5ff; color: #6b21a8; border: 1px solid #d8b4fe; }
-  .badge-sell  { background: #ffe4e6; color: #9f1239; border: 1px solid #fda4af; }
+  .badge-perm   { background: #ffe4e6; color: #9f1239; border: 1px solid #fda4af; }
+  .badge-30d    { background: #fff7ed; color: #9a3412; border: 1px solid #fdba74; }
+  .badge-7d     { background: #fefce8; color: #854d0e; border: 1px solid #fde047; }
+  .badge-3d     { background: #eff6ff; color: #1e40af; border: 1px solid #93c5fd; }
+  .badge-1d     { background: #f0fdf4; color: #166534; border: 1px solid #86efac; }
+  .badge-warn   { background: #faf5ff; color: #6b21a8; border: 1px solid #d8b4fe; }
+  .badge-sell   { background: #ffe4e6; color: #9f1239; border: 1px solid #fda4af; }
+  .badge-macro  { background: #fef9c3; color: #713f12; border: 1px solid #fcd34d; }
+  .badge-bug    { background: #ecfdf5; color: #065f46; border: 1px solid #6ee7b7; }
 
   .reason-text {
     font-size: 0.75rem;
     color: #9a8ab0;
-    max-width: 220px;
+    max-width: 240px;
   }
 
   /* ── Footer ── */
@@ -306,21 +309,21 @@
     <div id="fb" class="logo-fallback">TALESRUNNER</div>
     <div class="ban-title">🚫 ประกาศแบนบอท</div>
     <div class="ban-subtitle">Bot Ban Announcement — ประจำสัปดาห์</div>
-    <div class="date-badge">📅 วันศุกร์ที่ 15 พฤษภาคม 2569</div>
+    <div class="date-badge">📅 วันพุธที่ 13 พฤษภาคม 2569</div>
   </div>
 
   <!-- Summary -->
   <div class="summary-strip">
     <div class="stat-card">
-      <div class="num num-red">15</div>
+      <div class="num num-red">28</div>
       <div class="lbl">แบนถาวร</div>
     </div>
     <div class="stat-card">
-      <div class="num num-amber">28</div>
+      <div class="num num-amber">35</div>
       <div class="lbl">แบนชั่วคราว</div>
     </div>
     <div class="stat-card">
-      <div class="num num-green">43</div>
+      <div class="num num-green">63</div>
       <div class="lbl">รายการทั้งหมด</div>
     </div>
   </div>
@@ -331,12 +334,12 @@
     ทีมงานขอสงวนสิทธิ์ในการดำเนินการตามความเหมาะสม หากมีข้อสงสัยสามารถติดต่อทีมงานผ่านช่องทางอย่างเป็นทางการ
   </div>
 
-  <!-- Section 1: ถาวร -->
+  <!-- Section 1: แบนถาวร (จาก Ban list เดิม) -->
   <div class="section">
     <div class="section-header hd-red">
       <div class="section-dot dot-red"></div>
       <span class="section-title">แบนถาวร (Permanent Ban)</span>
-      <span class="section-count">15 ราย</span>
+      <span class="section-count">12 ราย</span>
     </div>
     <table class="ban-table">
       <thead>
@@ -348,76 +351,129 @@
         <tr><td class="num-col">3</td><td class="name">Oxl1zx</td><td class="username">—</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
         <tr><td class="num-col">4</td><td class="name">iMos</td><td class="username">—</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
         <tr><td class="num-col">5</td><td class="name">BungBEN</td><td class="username">—</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
-        <tr><td class="num-col">6</td><td class="name">คลโนทหอย</td><td class="username">—</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
+        <tr><td class="num-col">6</td><td class="name">ตดในรูหอย</td><td class="username">—</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
         <tr><td class="num-col">7</td><td class="name">XAUUSDm</td><td class="username">—</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
         <tr><td class="num-col">8</td><td class="name">imosv2</td><td class="username">—</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
-        <tr><td class="num-col">9</td><td class="name">Anachu</td><td class="username">—</td><td><span class="badge badge-sell">แบนชื่อขายถาวร</span></td><td class="reason-text">—</td></tr>
-        <tr><td class="num-col">10</td><td class="name">PonnieReview</td><td class="username">—</td><td><span class="badge badge-warn">แบนมาโครถาวร</span></td><td class="reason-text">—</td></tr>
+        <tr><td class="num-col">9</td><td class="name">Anachu</td><td class="username">—</td><td><span class="badge badge-sell">แบนซื้อขายถาวร</span></td><td class="reason-text">—</td></tr>
+        <tr><td class="num-col">10</td><td class="name">PonnieReview</td><td class="username">—</td><td><span class="badge badge-macro">แบนมาโครถาวร</span></td><td class="reason-text">—</td></tr>
         <tr><td class="num-col">11</td><td class="name">porJA</td><td class="username">—</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
         <tr><td class="num-col">12</td><td class="name">porJAA</td><td class="username">—</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
         <tr><td class="num-col">13</td><td class="name">iMosy</td><td class="username">mammosy</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
         <tr><td class="num-col">14</td><td class="name">RAMAKING</td><td class="username">longlive112</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
-        <tr><td class="num-col">15</td><td class="name">Lancelotz</td><td class="username">KRITIQ</td><td><span class="badge badge-3d">แบนมา 3 วัน</span></td><td class="reason-text">จงใจใช้คำพูดไม่เหมาะสม</td></tr>
+        <tr><td class="num-col">15</td><td class="name">rooteason</td><td class="username">Mokjai</td><td><span class="badge badge-sell">แบนซื้อขายถาวร</span></td><td class="reason-text">บอทออโต้ โข่งขายออโต้</td></tr>
+        <tr><td class="num-col">16</td><td class="name">dtsAntiCheat</td><td class="username">astar420</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">ประกาศขายโปรในเกม</td></tr>
+        <tr><td class="num-col">17</td><td class="name">—</td><td class="username">jokerip2024</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">ใช้โปรแกรมโกง</td></tr>
+        <tr><td class="num-col">18</td><td class="name">—</td><td class="username">peach00456</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">ใช้โปรแกรมโกง</td></tr>
+        <tr><td class="num-col">19</td><td class="name">CatTH</td><td class="username">qwer30300</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">ใช้โปรแกรมโกง</td></tr>
       </tbody>
     </table>
   </div>
 
-  <!-- Section 2: CS Bank -->
+  <!-- Section 2: แบนถาวร ออโต้ปั๊มเหรียญ (Ban list 130526) -->
+  <div class="section">
+    <div class="section-header hd-red">
+      <div class="section-dot dot-red"></div>
+      <span class="section-title">แบนถาวร — ออโต้ปั๊มเหรียญกิจกรรม (13/05/69)</span>
+      <span class="section-count">17 ราย</span>
+    </div>
+    <table class="ban-table">
+      <thead>
+        <tr><th>#</th><th>ชื่อตัวละคร</th><th>User Name</th><th>ประเภทการแบน</th><th>หมายเหตุ</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num-col">1</td><td class="name">Calculators</td><td class="username">ppppp01234</td><td><span class="badge badge-perm">แบนใช้บัคถาวร</span></td><td class="reason-text">ออโต้ปั๊มเหรียญกิจกรรม เล่นต่อเนื่อง 18 ชั่วโมง</td></tr>
+        <tr><td class="num-col">2</td><td class="name">แคสเปอร์</td><td class="username">casper123</td><td><span class="badge badge-perm">แบนใช้บัคถาวร</span></td><td class="reason-text">ออโต้ปั๊มเหรียญกิจกรรม เล่นต่อเนื่อง 18 ชั่วโมง</td></tr>
+        <tr><td class="num-col">3</td><td class="name">ออมแซ่บ</td><td class="username">aomsinv40</td><td><span class="badge badge-perm">แบนใช้บัคถาวร</span></td><td class="reason-text">ออโต้ปั๊มเหรียญกิจกรรม เล่นต่อเนื่อง 18 ชั่วโมง</td></tr>
+        <tr><td class="num-col">4</td><td class="name">Chirayuki</td><td class="username">Chirayuki</td><td><span class="badge badge-perm">แบนใช้บัคถาวร</span></td><td class="reason-text">ออโต้ปั๊มเหรียญกิจกรรม เล่นต่อเนื่อง 18 ชั่วโมง</td></tr>
+        <tr><td class="num-col">5</td><td class="name">naja633</td><td class="username">zazaba633</td><td><span class="badge badge-perm">แบนใช้บัคถาวร</span></td><td class="reason-text">ออโต้ปั๊มเหรียญกิจกรรม เล่นต่อเนื่อง 18 ชั่วโมง</td></tr>
+        <tr><td class="num-col">6</td><td class="name">JWizard</td><td class="username">jttopza1</td><td><span class="badge badge-perm">แบนใช้บัคถาวร</span></td><td class="reason-text">ออโต้ปั๊มเหรียญกิจกรรม เล่นต่อเนื่อง 18 ชั่วโมง</td></tr>
+        <tr><td class="num-col">7</td><td class="name">Chuunibyou</td><td class="username">Chuunibyouz</td><td><span class="badge badge-perm">แบนใช้บัคถาวร</span></td><td class="reason-text">ออโต้ปั๊มเหรียญกิจกรรม เล่นต่อเนื่อง 18 ชั่วโมง</td></tr>
+        <tr><td class="num-col">8</td><td class="name">maxx0001</td><td class="username">maxx0001</td><td><span class="badge badge-perm">แบนใช้บัคถาวร</span></td><td class="reason-text">ออโต้ปั๊มเหรียญกิจกรรม เล่นต่อเนื่อง 18 ชั่วโมง</td></tr>
+        <tr><td class="num-col">9</td><td class="name">m001</td><td class="username">m00001</td><td><span class="badge badge-perm">แบนใช้บัคถาวร</span></td><td class="reason-text">ออโต้ปั๊มเหรียญกิจกรรม เล่นต่อเนื่อง 18 ชั่วโมง</td></tr>
+        <tr><td class="num-col">10</td><td class="name">aeXISLINE</td><td class="username">jttopza3</td><td><span class="badge badge-perm">แบนใช้บัคถาวร</span></td><td class="reason-text">ออโต้ปั๊มเหรียญกิจกรรม เล่นต่อเนื่อง 18 ชั่วโมง</td></tr>
+        <tr><td class="num-col">11</td><td class="name">อะไรก็ได้</td><td class="username">aomsinv29</td><td><span class="badge badge-perm">แบนใช้บัคถาวร</span></td><td class="reason-text">ออโต้ปั๊มเหรียญกิจกรรม เล่นต่อเนื่อง 18 ชั่วโมง</td></tr>
+        <tr><td class="num-col">12</td><td class="name">๓๛MEM๏RIES๛๓</td><td class="username">memories</td><td><span class="badge badge-perm">แบนใช้บัคถาวร</span></td><td class="reason-text">ออโต้ปั๊มเหรียญกิจกรรม เล่นต่อเนื่อง 18 ชั่วโมง</td></tr>
+        <tr><td class="num-col">13</td><td class="name">D๛๓BABATA๓๛C</td><td class="username">babata01</td><td><span class="badge badge-perm">แบนใช้บัคถาวร</span></td><td class="reason-text">ออโต้ปั๊มเหรียญกิจกรรม เล่นต่อเนื่อง 18 ชั่วโมง</td></tr>
+        <tr><td class="num-col">14</td><td class="name">MaTSix</td><td class="username">anianaja01</td><td><span class="badge badge-perm">แบนใช้บัคถาวร</span></td><td class="reason-text">ออโต้ปั๊มเหรียญกิจกรรม เล่นต่อเนื่อง 18 ชั่วโมง</td></tr>
+        <tr><td class="num-col">15</td><td class="name">MisterTopz</td><td class="username">jakapat</td><td><span class="badge badge-perm">แบนใช้บัคถาวร</span></td><td class="reason-text">ออโต้ปั๊มเหรียญกิจกรรม เล่นต่อเนื่อง 18 ชั่วโมง</td></tr>
+        <tr><td class="num-col">16</td><td class="name">Maxx0002</td><td class="username">maxx0002</td><td><span class="badge badge-perm">แบนใช้บัคถาวร</span></td><td class="reason-text">ออโต้ปั๊มเหรียญกิจกรรม เล่นต่อเนื่อง 18 ชั่วโมง</td></tr>
+        <tr><td class="num-col">17</td><td class="name">ziza</td><td class="username">earnmi01</td><td><span class="badge badge-perm">แบนใช้บัคถาวร</span></td><td class="reason-text">ออโต้ปั๊มเหรียญกิจกรรม เล่นต่อเนื่อง 18 ชั่วโมง</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Section 3: CS Bank แบน 1 วัน -->
   <div class="section">
     <div class="section-header hd-amber">
       <div class="section-dot dot-amber"></div>
-      <span class="section-title">แบนชั่วคราว — CS: Bank (แบน 1 วัน)</span>
-      <span class="section-count">20 ราย</span>
+      <span class="section-title">แบนชั่วคราว — CS: Bank (แบน 1 วัน / ใช้ช่องโหว่ระบบ)</span>
+      <span class="section-count">23 ราย</span>
     </div>
     <table class="ban-table">
       <thead>
         <tr><th>#</th><th>ชื่อตัวละคร</th><th>User Name</th><th>ประเภทการแบน</th><th>หมายเหตุ</th></tr>
       </thead>
       <tbody>
-        <tr><td class="num-col">1</td><td class="name">สมใจเรื่อง</td><td class="username">tonglongrid</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
-        <tr><td class="num-col">2</td><td class="name">หมีกชุบนั้งหยอด</td><td class="username">chansode</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
-        <tr><td class="num-col">3</td><td class="name">babyty</td><td class="username">babyty</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
-        <tr><td class="num-col">4</td><td class="name">Istt</td><td class="username">istine45</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
-        <tr><td class="num-col">5</td><td class="name">RuAOI</td><td class="username">ruaoi74269</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
-        <tr><td class="num-col">6</td><td class="name">Trenbolone</td><td class="username">waritearth</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
-        <tr><td class="num-col">7</td><td class="name">Blackfighter</td><td class="username">BlackFighter</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
-        <tr><td class="num-col">8</td><td class="name">Wass</td><td class="username">suwatbank</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
-        <tr><td class="num-col">9</td><td class="name">Pepsiza</td><td class="username">pepsiza</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
-        <tr><td class="num-col">10</td><td class="name">Mcwell</td><td class="username">tenchk</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
-        <tr><td class="num-col">11</td><td class="name">hoax</td><td class="username">minmin2001</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
-        <tr><td class="num-col">12</td><td class="name">REnAMe</td><td class="username">novetime02</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
-        <tr><td class="num-col">13</td><td class="name">CHAyenn</td><td class="username">artrzx15</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
-        <tr><td class="num-col">14</td><td class="name">urMomz</td><td class="username">itimmily</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
-        <tr><td class="num-col">15</td><td class="name">Vindice</td><td class="username">jirayu135</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
-        <tr><td class="num-col">16</td><td class="name">KingRun</td><td class="username">lnwicelove26</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
-        <tr><td class="num-col">17</td><td class="name">Raxyz</td><td class="username">raylaster</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
-        <tr><td class="num-col">18</td><td class="name">Zhurima</td><td class="username">armzamax123</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
-        <tr><td class="num-col">19</td><td class="name">RamRamRam</td><td class="username">ramrunner</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
-        <tr><td class="num-col">20</td><td class="name">Gump</td><td class="username">Bestkung7</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
+        <tr><td class="num-col">1</td><td class="name">สมโชคเรือง</td><td class="username">tonglongrid</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">2</td><td class="name">หมึกชุบแป้งทอด</td><td class="username">chansode</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">3</td><td class="name">babyty</td><td class="username">babyty</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">4</td><td class="name">Istt</td><td class="username">istine45</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">5</td><td class="name">RuAOI</td><td class="username">ruaoi74269</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">6</td><td class="name">Trenbolone</td><td class="username">waritearth</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">7</td><td class="name">Blackfighter</td><td class="username">BlackFighter</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">8</td><td class="name">Wass</td><td class="username">suwatbank</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">9</td><td class="name">Pepsiza</td><td class="username">pepsiza</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">10</td><td class="name">Mcwell</td><td class="username">tenchk</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">11</td><td class="name">hoax</td><td class="username">minmin2001</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">12</td><td class="name">REnAMe</td><td class="username">novetime02</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">13</td><td class="name">CHAyenn</td><td class="username">artrzx15</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">14</td><td class="name">urMomz</td><td class="username">itimmily</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">15</td><td class="name">Vindice</td><td class="username">jirayu135</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">16</td><td class="name">KingRun</td><td class="username">lnwicelove26</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">17</td><td class="name">Raxyz</td><td class="username">raylaster</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">18</td><td class="name">Zhurima</td><td class="username">armzamax123</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">19</td><td class="name">Chaiyan</td><td class="username">Chaiyan4047</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">20</td><td class="name">RamRamRam</td><td class="username">ramrunner</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">21</td><td class="name">Gump</td><td class="username">Bestkung7</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">22</td><td class="name">lnwบี๋</td><td class="username">beekone123</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
+        <tr><td class="num-col">23</td><td class="name">DonLiFE</td><td class="username">gartbandit99</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ของระบบ</td></tr>
       </tbody>
     </table>
   </div>
 
-  <!-- Section 3: อื่นๆ -->
+  <!-- Section 4: อื่นๆ -->
   <div class="section">
     <div class="section-header hd-blue">
       <div class="section-dot dot-blue"></div>
-      <span class="section-title">แบนกรณีอื่น / ขายบัญชี / พฤติกรรมไม่เหมาะสม</span>
-      <span class="section-count">8 ราย</span>
+      <span class="section-title">แบนกรณีอื่น / พฤติกรรมไม่เหมาะสม / ขายบัญชี / ใช้บัค</span>
+      <span class="section-count">21 ราย</span>
     </div>
     <table class="ban-table">
       <thead>
         <tr><th>#</th><th>ชื่อตัวละคร</th><th>User Name</th><th>ประเภทการแบน</th><th>หมายเหตุ</th></tr>
       </thead>
       <tbody>
-        <tr><td class="num-col">1</td><td class="name">คนสถาน</td><td class="username">kaikunz</td><td><span class="badge badge-7d">แบนแช่ 7 วัน</span></td><td class="reason-text">ใช้คำพูดไม่เหมาะสม</td></tr>
-        <tr><td class="num-col">2</td><td class="name">คนสถานอิยาที</td><td class="username">vechie150</td><td><span class="badge badge-3d">แบน 3 วัน</span></td><td class="reason-text">ใช้คำพูดไม่เหมาะสม</td></tr>
-        <tr><td class="num-col">3</td><td class="name">คนสถาน</td><td class="username">kaikunz</td><td><span class="badge badge-30d">แบน 30 วัน</span></td><td class="reason-text">ใช้คำพูดไม่เหมาะสม</td></tr>
-        <tr><td class="num-col">4</td><td class="name">Djguypp</td><td class="username">djguyza</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ขายบัญชีในเกม</td></tr>
-        <tr><td class="num-col">5</td><td class="name">rooteason</td><td class="username">Mokjai</td><td><span class="badge badge-sell">แบนชื่อขายถาวร</span></td><td class="reason-text">—</td></tr>
-        <tr><td class="num-col">6</td><td class="name">Maddox</td><td class="username">MaddoxG</td><td><span class="badge badge-3d">แบน 3 วัน</span></td><td class="reason-text">พฤติกรรมไม่เหมาะสม</td></tr>
-        <tr><td class="num-col">7</td><td class="name">dtsAntiCheat</td><td class="username">astar420</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">ประกาศขายโปรในเกม</td></tr>
-        <tr><td class="num-col">8</td><td class="name">เลกเทีย</td><td class="username">Pondjuu01</td><td><span class="badge badge-warn">แบนตักเตือน</span></td><td class="reason-text">พฤติกรรมไม่เหมาะสม ก่อกวน</td></tr>
+        <tr><td class="num-col">1</td><td class="name">Lancelotz</td><td class="username">KRITIQ</td><td><span class="badge badge-3d">แบนมาโคร 3 วัน</span></td><td class="reason-text">จงใจใช้บัคในการเล่น</td></tr>
+        <tr><td class="num-col">2</td><td class="name">คนอีสาน</td><td class="username">kaikunz</td><td><span class="badge badge-7d">แบนแชท 7 วัน</span></td><td class="reason-text">ใช้คำพูดไม่เหมาะสม</td></tr>
+        <tr><td class="num-col">3</td><td class="name">คนอีสานอธิบายที</td><td class="username">vechie150</td><td><span class="badge badge-3d">แบนแชท 3 วัน</span></td><td class="reason-text">ใช้คำพูดไม่เหมาะสม</td></tr>
+        <tr><td class="num-col">4</td><td class="name">คนอีสาน</td><td class="username">kaikunz</td><td><span class="badge badge-30d">แบนแชท 30 วัน</span></td><td class="reason-text">ใช้คำพูดไม่เหมาะสม</td></tr>
+        <tr><td class="num-col">5</td><td class="name">Djguypp</td><td class="username">djguyza</td><td><span class="badge badge-1d">แบนแชท 1 วัน</span></td><td class="reason-text">ขายแคชในเกม</td></tr>
+        <tr><td class="num-col">6</td><td class="name">Maddox</td><td class="username">MaddoxG</td><td><span class="badge badge-3d">แบนแชท 3 วัน</span></td><td class="reason-text">ใช้คำพูดไม่เหมาะสม</td></tr>
+        <tr><td class="num-col">7</td><td class="name">เลิกเหิ้ย</td><td class="username">Pondjuu01</td><td><span class="badge badge-warn">แบนตักเตือน</span></td><td class="reason-text">พฤติกรรมไม่เหมาะสม ก่อกวนการเล่น</td></tr>
+        <tr><td class="num-col">8</td><td class="name">คนสกลนคร</td><td class="username">bloodyflora</td><td><span class="badge badge-1d">แบนแชท 1 วัน</span></td><td class="reason-text">ใช้คำพูดไม่เหมาะสม</td></tr>
+        <tr><td class="num-col">9</td><td class="name">รัชกาลที่10</td><td class="username">Gotkie</td><td><span class="badge badge-warn">แบนตักเตือน</span></td><td class="reason-text">ตั้งชื่อไม่เหมาะสม (แจ้งให้เปลี่ยนชื่อภายใน 3 วัน)</td></tr>
+        <tr><td class="num-col">10</td><td class="name">Savelnwza</td><td class="username">jednipat02</td><td><span class="badge badge-3d">แบนบัค 3 วัน</span></td><td class="reason-text">จงใจใช้บัคในการเล่น</td></tr>
+        <tr><td class="num-col">11</td><td class="name">Luther</td><td class="username">midisxr15</td><td><span class="badge badge-3d">แบนบัค 3 วัน</span></td><td class="reason-text">จงใจใช้บัคในการเล่น</td></tr>
+        <tr><td class="num-col">12</td><td class="name">say101</td><td class="username">say101</td><td><span class="badge badge-3d">แบนบัค 3 วัน</span></td><td class="reason-text">ประกาศขายแคชในเกม</td></tr>
+        <tr><td class="num-col">13</td><td class="name">oDARKNESSo</td><td class="username">lilbalenz1612</td><td><span class="badge badge-3d">แบนซื้อขาย 3 วัน</span></td><td class="reason-text">สร้างปาร์ตี้เพื่อขายของ</td></tr>
+        <tr><td class="num-col">14</td><td class="name">ฮาชิโระ</td><td class="username">ninoyzerx</td><td><span class="badge badge-3d">แบนซื้อขาย 3 วัน</span></td><td class="reason-text">สร้างปาร์ตี้เพื่อขายของ</td></tr>
+        <tr><td class="num-col">15</td><td class="name">Yone</td><td class="username">seehanat2850</td><td><span class="badge badge-3d">แบนซื้อขาย 3 วัน</span></td><td class="reason-text">สร้างปาร์ตี้เพื่อขายของ</td></tr>
+        <tr><td class="num-col">16</td><td class="name">รักออมหน่อย</td><td class="username">aomsinv28</td><td><span class="badge badge-3d">แบนซื้อขาย 3 วัน</span></td><td class="reason-text">สร้างปาร์ตี้เพื่อขายของ</td></tr>
+        <tr><td class="num-col">17</td><td class="name">Lucilla</td><td class="username">gamezooza1112</td><td><span class="badge badge-3d">แบนซื้อขาย 3 วัน</span></td><td class="reason-text">สร้างปาร์ตี้เพื่อขายของ</td></tr>
+        <tr><td class="num-col">18</td><td class="name">unsteady</td><td class="username">goofyjojoe</td><td><span class="badge badge-3d">แบนบัค 3 วัน</span></td><td class="reason-text">จงใจใช้ช่องโหว่จากบัคสนามในเกม</td></tr>
+        <tr><td class="num-col">19</td><td class="name">Muspe1heim</td><td class="username">Muspelheim</td><td><span class="badge badge-3d">แบนบัค 3 วัน</span></td><td class="reason-text">จงใจใช้ช่องโหว่จากบัคสนามในเกม</td></tr>
+        <tr><td class="num-col">20</td><td class="name">แมวกิ</td><td class="username">park0023</td><td><span class="badge badge-3d">แบนบัค 3 วัน</span></td><td class="reason-text">จงใจใช้ช่องโหว่จากบัคสนามในเกม</td></tr>
+        <tr><td class="num-col">21</td><td class="name">adsdrhvcx</td><td class="username">gacha3</td><td><span class="badge badge-3d">แบนบัค 3 วัน</span></td><td class="reason-text">จงใจใช้ช่องโหว่จากบัคสนามในเกม</td></tr>
       </tbody>
     </table>
   </div>
@@ -425,7 +481,7 @@
   <!-- Footer -->
   <div class="footer">
     <p><strong>TalesRunner TH — ทีม GM & CS</strong></p>
-    <p>ประกาศทุกวันศุกร์ · หากมีข้อสงสัยติดต่อทีมงานผ่าน Ticket หรือ Facebook อย่างเป็นทางการ</p>
+    <p>ประกาศทุกวันพุธ · หากมีข้อสงสัยติดต่อทีมงานผ่าน Ticket หรือ Facebook อย่างเป็นทางการ</p>
     <p>© 2569 TalesRunner Thailand. All rights reserved.</p>
   </div>
 
