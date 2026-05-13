@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TalesRunner — ประกาศแบนบอท</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&family=Teko:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: linear-gradient(135deg, #fde8f0 0%, #e8f0fd 35%, #e8fdf0 65%, #fdf5e8 100%);
+    background-attachment: fixed;
+    color: #2a2040;
+    font-family: 'Sarabun', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* floating blobs */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -120px; left: -120px;
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fbb6ce55, transparent 70%);
+    pointer-events: none;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -100px; right: -100px;
+    width: 380px; height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #a5b4fc55, transparent 70%);
+    pointer-events: none;
+  }
+
+  .page-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Header ── */
+  .header {
+    text-align: center;
+    padding: 2.5rem 1.5rem 2rem;
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 1.5px solid rgba(255,255,255,0.9);
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 24px rgba(160,120,200,0.1);
+  }
+
+  .logo-img {
+    height: 80px;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 3px 8px rgba(0,0,0,0.15));
+  }
+
+  .logo-fallback {
+    display: none;
+    font-family: 'Teko', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #c0392b;
+    margin-bottom: 0.6rem;
+  }
+
+  .ban-title {
+    font-family: 'Teko', sans-serif;
+    font-size: 2.6rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    color: #c0392b;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .ban-subtitle {
+    font-size: 0.95rem;
+    color: #7a6a8a;
+    letter-spacing: 0.03em;
+  }
+
+  .date-badge {
+    display: inline-block;
+    margin-top: 0.85rem;
+    background: linear-gradient(90deg, #fde68a, #fca5a5);
+    color: #7c2d12;
+    padding: 0.35rem 1.3rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    border: none;
+  }
+
+  /* ── Summary ── */
+  .summary-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .stat-card {
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(255,255,255,0.9);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(160,120,200,0.08);
+  }
+
+  .stat-card .num {
+    font-family: 'Teko', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .stat-card .lbl {
+    font-size: 0.78rem;
+    color: #7a6a8a;
+    margin-top: 0.2rem;
+    letter-spacing: 0.03em;
+  }
+
+  .num-red   { color: #e05555; }
+  .num-amber { color: #d97706; }
+  .num-green { color: #16a34a; }
+
+  /* ── Warning ── */
+  .warning-box {
+    background: rgba(255,235,235,0.8);
+    border: 1px solid #fca5a5;
+    border-left: 4px solid #ef4444;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.84rem;
+    color: #7f1d1d;
+    line-height: 1.7;
+  }
+
+  .warning-box strong { color: #b91c1c; }
+
+  /* ── Section ── */
+  .section {
+    background: rgba(255,255,255,0.68);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255,255,255,0.9);
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(160,120,200,0.08);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.85rem 1.25rem;
+    border-bottom: 1px solid rgba(200,180,230,0.25);
+  }
+
+  .section-header.hd-red    { background: linear-gradient(90deg, #ffe4e6, #fff1f2); }
+  .section-header.hd-amber  { background: linear-gradient(90deg, #fff7ed, #fef3c7); }
+  .section-header.hd-blue   { background: linear-gradient(90deg, #eff6ff, #f0fdf4); }
+
+  .section-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .dot-red   { background: #f87171; }
+  .dot-amber { background: #fb923c; }
+  .dot-blue  { background: #60a5fa; }
+
+  .section-title {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: #2a2040;
+    letter-spacing: 0.02em;
+  }
+
+  .section-count {
+    margin-left: auto;
+    background: rgba(255,255,255,0.7);
+    border-radius: 999px;
+    padding: 0.15rem 0.75rem;
+    font-size: 0.72rem;
+    color: #6b5b8a;
+    font-weight: 700;
+    border: 1px solid rgba(180,150,220,0.3);
+  }
+
+  /* ── Table ── */
+  .ban-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }
+
+  .ban-table thead th {
+    background: rgba(245,240,255,0.6);
+    color: #8878a8;
+    font-weight: 700;
+    padding: 0.55rem 0.85rem;
+    text-align: left;
+    font-size: 0.69rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(200,180,230,0.2);
+  }
+
+  .ban-table tbody tr {
+    border-bottom: 1px solid rgba(200,180,230,0.15);
+    transition: background 0.12s;
+  }
+
+  .ban-table tbody tr:last-child { border-bottom: none; }
+
+  .ban-table tbody tr:hover {
+    background: rgba(240,230,255,0.35);
+  }
+
+  .ban-table td {
+    padding: 0.65rem 0.85rem;
+    color: #3a3050;
+    vertical-align: middle;
+  }
+
+  .ban-table td.name {
+    font-weight: 700;
+    color: #1a1030;
+  }
+
+  .ban-table td.username {
+    font-family: monospace;
+    font-size: 0.79rem;
+    color: #5b7fe8;
+  }
+
+  .ban-table td.num-col {
+    color: #bbb;
+    font-size: 0.74rem;
+    width: 30px;
+  }
+
+  /* ── Badges ── */
+  .badge {
+    display: inline-block;
+    padding: 0.22rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .badge-perm  { background: #ffe4e6; color: #9f1239; border: 1px solid #fda4af; }
+  .badge-30d   { background: #fff7ed; color: #9a3412; border: 1px solid #fdba74; }
+  .badge-7d    { background: #fefce8; color: #854d0e; border: 1px solid #fde047; }
+  .badge-3d    { background: #eff6ff; color: #1e40af; border: 1px solid #93c5fd; }
+  .badge-1d    { background: #f0fdf4; color: #166534; border: 1px solid #86efac; }
+  .badge-warn  { background: #faf5ff; color: #6b21a8; border: 1px solid #d8b4fe; }
+  .badge-sell  { background: #ffe4e6; color: #9f1239; border: 1px solid #fda4af; }
+
+  .reason-text {
+    font-size: 0.75rem;
+    color: #9a8ab0;
+    max-width: 220px;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.78rem;
+    color: #9a8ab0;
+    line-height: 1.8;
+  }
+
+  .footer strong { color: #6b5b8a; }
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- Header -->
+  <div class="header">
+    <img src="LOGO_TR.png" alt="TalesRunner" class="logo-img"
+         onerror="this.style.display='none'; document.getElementById('fb').style.display='block'">
+    <div id="fb" class="logo-fallback">TALESRUNNER</div>
+    <div class="ban-title">🚫 ประกาศแบนบอท</div>
+    <div class="ban-subtitle">Bot Ban Announcement — ประจำสัปดาห์</div>
+    <div class="date-badge">📅 วันศุกร์ที่ 15 พฤษภาคม 2569</div>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-strip">
+    <div class="stat-card">
+      <div class="num num-red">15</div>
+      <div class="lbl">แบนถาวร</div>
+    </div>
+    <div class="stat-card">
+      <div class="num num-amber">28</div>
+      <div class="lbl">แบนชั่วคราว</div>
+    </div>
+    <div class="stat-card">
+      <div class="num num-green">43</div>
+      <div class="lbl">รายการทั้งหมด</div>
+    </div>
+  </div>
+
+  <!-- Warning -->
+  <div class="warning-box">
+    <strong>⚠️ ประกาศสำคัญ:</strong> ผู้เล่นที่มีรายชื่อด้านล่างถูกดำเนินการแบนจากระบบเนื่องจากการใช้โปรแกรมช่วยเล่น (Bot) และ/หรือฝ่าฝืนกฎของเกม
+    ทีมงานขอสงวนสิทธิ์ในการดำเนินการตามความเหมาะสม หากมีข้อสงสัยสามารถติดต่อทีมงานผ่านช่องทางอย่างเป็นทางการ
+  </div>
+
+  <!-- Section 1: ถาวร -->
+  <div class="section">
+    <div class="section-header hd-red">
+      <div class="section-dot dot-red"></div>
+      <span class="section-title">แบนถาวร (Permanent Ban)</span>
+      <span class="section-count">15 ราย</span>
+    </div>
+    <table class="ban-table">
+      <thead>
+        <tr><th>#</th><th>ชื่อตัวละคร</th><th>User Name</th><th>ประเภทการแบน</th><th>หมายเหตุ</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num-col">1</td><td class="name">Nyaa</td><td class="username">—</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
+        <tr><td class="num-col">2</td><td class="name">ทดสอบ123</td><td class="username">—</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
+        <tr><td class="num-col">3</td><td class="name">Oxl1zx</td><td class="username">—</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
+        <tr><td class="num-col">4</td><td class="name">iMos</td><td class="username">—</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
+        <tr><td class="num-col">5</td><td class="name">BungBEN</td><td class="username">—</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
+        <tr><td class="num-col">6</td><td class="name">คลโนทหอย</td><td class="username">—</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
+        <tr><td class="num-col">7</td><td class="name">XAUUSDm</td><td class="username">—</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
+        <tr><td class="num-col">8</td><td class="name">imosv2</td><td class="username">—</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
+        <tr><td class="num-col">9</td><td class="name">Anachu</td><td class="username">—</td><td><span class="badge badge-sell">แบนชื่อขายถาวร</span></td><td class="reason-text">—</td></tr>
+        <tr><td class="num-col">10</td><td class="name">PonnieReview</td><td class="username">—</td><td><span class="badge badge-warn">แบนมาโครถาวร</span></td><td class="reason-text">—</td></tr>
+        <tr><td class="num-col">11</td><td class="name">porJA</td><td class="username">—</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
+        <tr><td class="num-col">12</td><td class="name">porJAA</td><td class="username">—</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
+        <tr><td class="num-col">13</td><td class="name">iMosy</td><td class="username">mammosy</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
+        <tr><td class="num-col">14</td><td class="name">RAMAKING</td><td class="username">longlive112</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">—</td></tr>
+        <tr><td class="num-col">15</td><td class="name">Lancelotz</td><td class="username">KRITIQ</td><td><span class="badge badge-3d">แบนมา 3 วัน</span></td><td class="reason-text">จงใจใช้คำพูดไม่เหมาะสม</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Section 2: CS Bank -->
+  <div class="section">
+    <div class="section-header hd-amber">
+      <div class="section-dot dot-amber"></div>
+      <span class="section-title">แบนชั่วคราว — CS: Bank (แบน 1 วัน)</span>
+      <span class="section-count">20 ราย</span>
+    </div>
+    <table class="ban-table">
+      <thead>
+        <tr><th>#</th><th>ชื่อตัวละคร</th><th>User Name</th><th>ประเภทการแบน</th><th>หมายเหตุ</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num-col">1</td><td class="name">สมใจเรื่อง</td><td class="username">tonglongrid</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
+        <tr><td class="num-col">2</td><td class="name">หมีกชุบนั้งหยอด</td><td class="username">chansode</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
+        <tr><td class="num-col">3</td><td class="name">babyty</td><td class="username">babyty</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
+        <tr><td class="num-col">4</td><td class="name">Istt</td><td class="username">istine45</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
+        <tr><td class="num-col">5</td><td class="name">RuAOI</td><td class="username">ruaoi74269</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
+        <tr><td class="num-col">6</td><td class="name">Trenbolone</td><td class="username">waritearth</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
+        <tr><td class="num-col">7</td><td class="name">Blackfighter</td><td class="username">BlackFighter</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
+        <tr><td class="num-col">8</td><td class="name">Wass</td><td class="username">suwatbank</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
+        <tr><td class="num-col">9</td><td class="name">Pepsiza</td><td class="username">pepsiza</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
+        <tr><td class="num-col">10</td><td class="name">Mcwell</td><td class="username">tenchk</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
+        <tr><td class="num-col">11</td><td class="name">hoax</td><td class="username">minmin2001</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
+        <tr><td class="num-col">12</td><td class="name">REnAMe</td><td class="username">novetime02</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
+        <tr><td class="num-col">13</td><td class="name">CHAyenn</td><td class="username">artrzx15</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
+        <tr><td class="num-col">14</td><td class="name">urMomz</td><td class="username">itimmily</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
+        <tr><td class="num-col">15</td><td class="name">Vindice</td><td class="username">jirayu135</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
+        <tr><td class="num-col">16</td><td class="name">KingRun</td><td class="username">lnwicelove26</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
+        <tr><td class="num-col">17</td><td class="name">Raxyz</td><td class="username">raylaster</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
+        <tr><td class="num-col">18</td><td class="name">Zhurima</td><td class="username">armzamax123</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
+        <tr><td class="num-col">19</td><td class="name">RamRamRam</td><td class="username">ramrunner</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
+        <tr><td class="num-col">20</td><td class="name">Gump</td><td class="username">Bestkung7</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ใช้ช่องโหว่ระบบ</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Section 3: อื่นๆ -->
+  <div class="section">
+    <div class="section-header hd-blue">
+      <div class="section-dot dot-blue"></div>
+      <span class="section-title">แบนกรณีอื่น / ขายบัญชี / พฤติกรรมไม่เหมาะสม</span>
+      <span class="section-count">8 ราย</span>
+    </div>
+    <table class="ban-table">
+      <thead>
+        <tr><th>#</th><th>ชื่อตัวละคร</th><th>User Name</th><th>ประเภทการแบน</th><th>หมายเหตุ</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num-col">1</td><td class="name">คนสถาน</td><td class="username">kaikunz</td><td><span class="badge badge-7d">แบนแช่ 7 วัน</span></td><td class="reason-text">ใช้คำพูดไม่เหมาะสม</td></tr>
+        <tr><td class="num-col">2</td><td class="name">คนสถานอิยาที</td><td class="username">vechie150</td><td><span class="badge badge-3d">แบน 3 วัน</span></td><td class="reason-text">ใช้คำพูดไม่เหมาะสม</td></tr>
+        <tr><td class="num-col">3</td><td class="name">คนสถาน</td><td class="username">kaikunz</td><td><span class="badge badge-30d">แบน 30 วัน</span></td><td class="reason-text">ใช้คำพูดไม่เหมาะสม</td></tr>
+        <tr><td class="num-col">4</td><td class="name">Djguypp</td><td class="username">djguyza</td><td><span class="badge badge-1d">แบน 1 วัน</span></td><td class="reason-text">ขายบัญชีในเกม</td></tr>
+        <tr><td class="num-col">5</td><td class="name">rooteason</td><td class="username">Mokjai</td><td><span class="badge badge-sell">แบนชื่อขายถาวร</span></td><td class="reason-text">—</td></tr>
+        <tr><td class="num-col">6</td><td class="name">Maddox</td><td class="username">MaddoxG</td><td><span class="badge badge-3d">แบน 3 วัน</span></td><td class="reason-text">พฤติกรรมไม่เหมาะสม</td></tr>
+        <tr><td class="num-col">7</td><td class="name">dtsAntiCheat</td><td class="username">astar420</td><td><span class="badge badge-perm">แบนโปร/บอท ถาวร</span></td><td class="reason-text">ประกาศขายโปรในเกม</td></tr>
+        <tr><td class="num-col">8</td><td class="name">เลกเทีย</td><td class="username">Pondjuu01</td><td><span class="badge badge-warn">แบนตักเตือน</span></td><td class="reason-text">พฤติกรรมไม่เหมาะสม ก่อกวน</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p><strong>TalesRunner TH — ทีม GM & CS</strong></p>
+    <p>ประกาศทุกวันศุกร์ · หากมีข้อสงสัยติดต่อทีมงานผ่าน Ticket หรือ Facebook อย่างเป็นทางการ</p>
+    <p>© 2569 TalesRunner Thailand. All rights reserved.</p>
+  </div>
+
+</div>
+</body>
+</html>
